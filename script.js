@@ -1,7 +1,9 @@
 let p = document.querySelector('p');
 let p1 = document.querySelector('.p1');
 let p2 = document.querySelector('.p2');
-let answer;
+let answers;
+let speechRec = new p5.SpeechRec('en-US', gotSpeech);
+
 
 
 
@@ -15,6 +17,11 @@ function fetchRiddle() {
 
 function setup() {
     noCanvas();
+    let speechRec = new p5.SpeechRec('en-US', gotSpeech);
+}
+
+function gotSpeech() {
+    console.log(speechRec)
 }
 
 function draw() {
@@ -30,7 +37,7 @@ function show(riddles) {
     }
     let index = myIndex(riddles.length)
     p.textContent = riddles[index].riddle;
-    answer = riddles[index].answer;
+    answers = riddles[index].answer;
     console.log(riddles.length)
 }
 
@@ -38,8 +45,10 @@ fetchRiddle();
 
 function answer(player) {
     console.log(player + ' replied');
+    speechRec.start();
+
 
 }
 
-p1.addEventListener('click', answer("player1"));
-p2.addEventListener('click', answer("player2"));
+p1.addEventListener('click', () => answer("player1"));
+p2.addEventListener('click', () => answer("player2"));
