@@ -1,4 +1,7 @@
 let p = document.querySelector('p');
+let p1 = document.querySelector('.p1');
+let p2 = document.querySelector('.p2');
+let answer;
 
 
 
@@ -10,6 +13,13 @@ function fetchRiddle() {
 
 }
 
+function setup() {
+    noCanvas();
+}
+
+function draw() {
+
+}
 
 
 function show(riddles) {
@@ -18,9 +28,18 @@ function show(riddles) {
         let min = 0;
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-    p.textContent = riddles[myIndex(riddles.length)].riddle;
+    let index = myIndex(riddles.length)
+    p.textContent = riddles[index].riddle;
+    answer = riddles[index].answer;
     console.log(riddles.length)
 }
 
 fetchRiddle();
+
+function answer(player) {
+    console.log(player + ' replied');
+
+}
+
+p1.addEventListener('click', answer("player1"));
+p2.addEventListener('click', answer("player2"));
